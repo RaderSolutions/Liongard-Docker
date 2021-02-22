@@ -2,7 +2,6 @@
 version: "3"
 services:
   liongardroaragent:
-    container_name: roar
     privileged: true
     image: "docker.io/radersolutions/liongard-roar"
     network_mode: host
