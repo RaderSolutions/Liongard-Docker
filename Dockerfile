@@ -1,4 +1,4 @@
-FROM centos:8-stream
+FROM centos:latest
 
 MAINTAINER tfournet@radersolutions.com
 
