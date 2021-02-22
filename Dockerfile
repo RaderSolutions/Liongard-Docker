@@ -13,4 +13,4 @@ ENV HOME /root
 
 WORKDIR /root
 
-ENTRYPOINT ["/usr/local/bin/install-roar.sh --url \"$INSTANCE.app.liongard.com\" --name \"$AGENT_NAME\" --description \"$DESCRIPTION\" --access-key $ACCESS_KEY --access-secret $ACCESS_SECRET --service-provider \"$SERVICE_PROVIDER\" --environment \"$ENVIRONMENT\""]
+ENTRYPOINT ["/usr/local/bin/install-roar.sh"]
