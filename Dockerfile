@@ -5,6 +5,7 @@ MAINTAINER tfournet@radersolutions.com
 LABEL Remarks="Container for running Liongard ROAR Agents"
 
 RUN dnf -y update 
+RUN dnf -y install sudo
 
 COPY install-roar /usr/local/bin/install-roar.sh
 RUN  chmod +x /usr/local/bin/install-roar.sh
