@@ -13,4 +13,4 @@ ENV HOME /root
 
 WORKDIR /root
 
-ENTRYPOINT ["/usr/local/bin/install-roar.sh"]
+ENTRYPOINT ["install-roar.sh"]
