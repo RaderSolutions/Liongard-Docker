@@ -16,7 +16,7 @@ fi
 
 
 
-installdir="/usr/local/containers/roar"
+install_dir="/usr/local/containers/roar"
 
 echo "Checking for docker/podman components on your system and attempting to install if needed..."
 if ! (which docker-compose); then
@@ -29,11 +29,13 @@ if ! (which docker-compose); then
     exit 100
   fi
 fi
+systemctl enable --now podman 2>/dev/null
+systemctl enable --now docker 2>/dev/null 
 
 compose=$(which docker-compose)
 
 
-cp docker-compose.yaml $installdir
+cp docker-compose.yaml $install_dir
 
 echo """
 INSTANCE=\"$1\"
@@ -43,6 +45,12 @@ ACCESS_KEY=\"$3\"
 ACCESS_SECRET=\"$4\"
 SERVICE_PROVIDER=\"$2\"
 ENVIRONMENT=\"$5\"
-""" > $installdir/etc/roar.conf 
+""" > $install_dir/etc/roar.conf 
 
+cd $install_dir
+
+echo "Attempting to start up images with docker-compose. If this fails you may need to do some distribution-specific troubleshooting on your host."
+
+docker-compose up -d
+docker ps 
 
