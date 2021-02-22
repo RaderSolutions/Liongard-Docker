@@ -20,13 +20,13 @@ install_dir="/usr/local/containers/roar"
 mkdir -p $install_dir
 mkdir -p $install_dir/etc 
 
-  which dnf && dnf -y install podman-compose curl
-  which yum && yum -y install docker docker-compose curl 
-  which apt && apt-get -y install docker docker-compose curl
-  if (which podman-compose); then 
+which dnf && dnf -y install podman-compose curl
+which yum && yum -y install docker docker-compose curl 
+which apt && apt-get -y install docker docker-compose curl
+if (which podman-compose); then 
     alias docker-compose="podman-compose"
-  fi
 fi
+
 systemctl enable --now podman 2>/dev/null
 systemctl enable --now docker 2>/dev/null 
 
