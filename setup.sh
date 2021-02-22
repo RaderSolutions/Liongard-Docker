@@ -23,9 +23,6 @@ mkdir -p $install_dir/etc
 which dnf && dnf -y install podman-compose curl
 which yum && yum -y install docker docker-compose curl 
 which apt && apt-get -y install docker docker-compose curl
-if (which podman-compose); then 
-    alias docker-compose="podman-compose"
-fi
 
 systemctl enable --now podman 2>/dev/null
 systemctl enable --now docker 2>/dev/null 
@@ -47,6 +44,12 @@ cd $install_dir
 
 echo "Attempting to start up images with docker-compose. If this fails you may need to do some distribution-specific troubleshooting on your host."
 
-docker-compose up -d
+
+if (which docker-compose); then 
+    docker-compose up -d
+else
+    podman-compose up -d
+fi
+
 docker ps 
 
