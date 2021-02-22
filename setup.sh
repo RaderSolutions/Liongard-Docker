@@ -17,22 +17,18 @@ fi
 
 
 install_dir="/usr/local/containers/roar"
+mkdir -p $install_dir
+mkdir -p $install_dir/etc 
 
-echo "Checking for docker/podman components on your system and attempting to install if needed..."
-if ! (which docker-compose); then
-  echo "Docker Compose was not found on your system. Attempting to install it using standard distro utils"
   which dnf && dnf -y install podman-compose curl
   which yum && yum -y install docker docker-compose curl 
   which apt && apt-get -y install docker docker-compose curl
-  if ! (which docker-compose); then 
-    echo "Still unable to find docker-compose on this system. You will need to install docker-compose manually. Exiting"
-    exit 100
+  if (which podman-compose); then 
+    alias docker-compose="podman-compose"
   fi
 fi
 systemctl enable --now podman 2>/dev/null
 systemctl enable --now docker 2>/dev/null 
-
-compose=$(which docker-compose)
 
 
 cp docker-compose.yaml $install_dir
