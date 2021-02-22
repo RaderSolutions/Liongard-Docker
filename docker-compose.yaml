@@ -1,7 +1,7 @@
 
 version: "3"
 services:
-  cybercnsvulnerabilityagent:
+  liongardroaragent:
     container_name: roar
     privileged: true
     image: "docker.io/radersolutions/liongard-roar"
