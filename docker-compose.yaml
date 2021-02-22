@@ -1,1 +1,11 @@
 
+version: "3"
+services:
+  cybercnsvulnerabilityagent:
+    container_name: roar
+    privileged: true
+    image: "docker.io/radersolutions/liongard-roar"
+    network_mode: host
+    restart: always
+    volumes:
+      - "/usr/local/containers/roar/etc:/etc/roar"
