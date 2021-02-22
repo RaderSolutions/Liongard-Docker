@@ -6,9 +6,11 @@ LABEL Remarks="Container for running Liongard ROAR Agents"
 
 RUN dnf -y update 
 
-COPY install-roar.sh /usr/local/bin/install-roar.sh
+COPY install-roar /usr/local/bin/install-roar.sh
 
 
 ENV HOME /root
 
 WORKDIR /root
+
+ENTRYPOINT ["/usr/local/bin/install-roar.sh"]
