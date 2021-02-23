@@ -12,6 +12,6 @@ RUN  chmod +x /usr/local/bin/install-roar.sh
 
 ENV HOME /root
 
-WORKDIR /root
+WORKDIR /
 
 ENTRYPOINT ["/usr/local/bin/install-roar.sh"]
