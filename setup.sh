@@ -41,7 +41,7 @@ ACCESS_SECRET=\"$4\"
 SERVICE_PROVIDER=\"$2\"
 ENVIRONMENT=\"$5\"
 USER=\"root\"
-""" > $install_dir/etc/roar.conf 
+""" > $install_dir/etc/roar-container.conf 
 
 cd $install_dir
 
