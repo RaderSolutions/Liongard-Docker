@@ -5,7 +5,7 @@ source /etc/roar/roar.conf
 
 curl -k https://$INSTANCE.app.liongard.com/api/v1/agents/scripts/setup-roar-agent/ -o setup-roar-agent
 chmod 775 setup-roar-agent
-./setup-roar-agent --url "$INSTANCE.app.liongard.com" \
+USER=root ./setup-roar-agent --url "$INSTANCE.app.liongard.com" \
   --name "$AGENT_NAME" \
   --description "$DESCRIPTION" \
   --access-key $ACCESS_KEY \
