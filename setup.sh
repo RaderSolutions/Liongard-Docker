@@ -15,20 +15,22 @@ if [[ $# -ne 5 ]]; then
 fi
 
 
-
+# Prepare installation directories
 install_dir="/usr/local/containers/roar"
 mkdir -p $install_dir
 mkdir -p $install_dir/etc 
 
+# Attempt to install prepreqs
 which dnf && dnf -y install podman-compose curl
 which yum && yum -y install docker docker-compose curl 
 which apt && apt-get -y install docker docker-compose curl
 
+# Attempt to enable container services
 systemctl enable --now podman 2>/dev/null
 systemctl enable --now docker 2>/dev/null 
 
-
-cp docker-compose.yaml $install_dir
+# Grab compose file
+curl -o $install_dir/docker-compose.yaml https://raw.githubusercontent.com/RaderSolutions/Liongard-Docker/main/docker-compose.yaml
 
 echo """
 INSTANCE=\"$1\"
@@ -48,7 +50,7 @@ echo "Attempting to start up images with docker-compose. If this fails you may n
 
 if (which docker-compose); then 
     docker-compose up -d
-else
+elif (which podman-compose); then
     podman-compose up -d
 fi
 
