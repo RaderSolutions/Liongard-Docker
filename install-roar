@@ -6,6 +6,7 @@
 curl -k https://$INSTANCE.app.liongard.com/api/v1/agents/scripts/setup-roar-agent/ -o setup-roar-agent
 chmod 775 setup-roar-agent
 alias roar=/usr/local/bin/roar 
+sed -ie "s#https://nodejs.org/dist/latest/#https://nodejs.org/dist/latest-v14.x/#g" setup-roar-agent 
 USER=root ./setup-roar-agent --url "$INSTANCE.app.liongard.com" \
   --name "$AGENT_NAME" \
   --description "$DESCRIPTION" \
