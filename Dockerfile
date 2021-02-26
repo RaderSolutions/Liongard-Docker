@@ -7,6 +7,7 @@ LABEL Remarks="Container for running Liongard ROAR Agents"
 
 COPY install-roar /usr/local/bin/install-roar.sh
 RUN  chmod +x /usr/local/bin/install-roar.sh
+RUN  chmod +r /etc/liongard/*
 
 ENV HOME /root
 

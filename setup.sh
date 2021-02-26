@@ -21,9 +21,9 @@ mkdir -p $install_dir
 mkdir -p $install_dir/etc 
 
 # Attempt to install prepreqs
-which dnf && dnf -y install podman-compose curl
-which yum && yum -y install docker docker-compose curl 
-which apt && apt-get -y install docker docker-compose curl
+which dnf >/dev/null 2>&1 && dnf -y install podman-compose curl
+which yum >/dev/null 2>&1 && yum -y install docker docker-compose curl 
+which apt >/dev/null 2>&1 && apt-get -y install docker docker-compose curl
 
 # Attempt to enable container services
 systemctl enable --now podman 2>/dev/null
@@ -43,14 +43,19 @@ ENVIRONMENT=\"$5\"
 USER=\"root\"
 """ > $install_dir/etc/roar-container.conf 
 
+chmod a+r $install_dir/etc/roar-container.conf 
+
 cd $install_dir
 
+cat $install_dir/etc/roar-container.conf 
+
+echo ""
 echo "Attempting to start up images with docker-compose. If this fails you may need to do some distribution-specific troubleshooting on your host."
 
 
-if (which docker-compose); then 
+if (which docker-compose  >/dev/null 2>&1); then 
     docker-compose up -d
-elif (which podman-compose); then
+elif (which podman-compose >/dev/null 2>&1); then
     podman-compose up -d
 fi
 
