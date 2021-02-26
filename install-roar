@@ -15,4 +15,7 @@ USER=root ./setup-roar-agent --url "$INSTANCE.app.liongard.com" \
   --service-provider "$SERVICE_PROVIDER" \
   --environment "$ENVIRONMENT" 
 
+sync
+sleep 5
+
 DEBUG="*" /usr/local/lib/node_modules/pm2/bin/pm2 resurrect --no-daemon
