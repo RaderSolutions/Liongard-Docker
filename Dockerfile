@@ -1,11 +1,11 @@
-FROM node:14
+FROM centos:latest
 
 LABEL Remarks="Container for running Liongard ROAR Agents"
 
-#RUN yum -y update 
-#RUN yum -y install sudo npm wget
+RUN yum -y update 
+RUN yum -y install sudo npm wget
 
-RUN apt-get update && apt-get -y install sudo
+#RUN apt-get update && apt-get -y install sudo
 RUN mkdir -p /etc/liongard 
 
 COPY install-roar /usr/local/bin/install-roar.sh
