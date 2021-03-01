@@ -34,7 +34,7 @@ curl -o $install_dir/docker-compose.yaml https://raw.githubusercontent.com/Rader
 
 echo """
 INSTANCE=\"$1\"
-AGENT_NAME=\"$(hostname)-pod$RANDOM\"
+AGENT_NAME=\"$(hostname)-pod\"
 DESCRIPTION=\"Docker Agent\"
 ACCESS_KEY=\"$3\"
 ACCESS_SECRET=\"$4\"
