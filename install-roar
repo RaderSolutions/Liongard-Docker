@@ -18,7 +18,7 @@ USER=root ./setup-roar-agent --url "$INSTANCE.app.liongard.com" \
 sync
 sleep 5
 
-systemctl start pm2-root
+#systemctl start pm2-root
 
-journalctl -f -u pm2-root 
-#DEBUG="*" /usr/local/lib/node_modules/pm2/bin/pm2 resurrect --no-daemon
+#journalctl -f -u pm2-root 
+DEBUG="*" /usr/local/lib/node_modules/pm2/bin/pm2 resurrect --no-daemon
