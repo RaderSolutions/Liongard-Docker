@@ -8,3 +8,4 @@ services:
     restart: always
     volumes:
       - "/usr/local/containers/roar/etc:/etc/liongard"
+      - "/usr/local/containers/roar/logs:/opt/liongard/logs"

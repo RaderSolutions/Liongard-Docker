@@ -19,6 +19,7 @@ fi
 install_dir="/usr/local/containers/roar"
 mkdir -p $install_dir
 mkdir -p $install_dir/etc 
+mkdir -p $install_dir/logs 
 
 # Attempt to install prepreqs
 which dnf >/dev/null 2>&1 && dnf -y install podman-compose curl

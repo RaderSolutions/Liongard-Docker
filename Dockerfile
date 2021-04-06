@@ -18,6 +18,5 @@ ENV HOME /root
 
 WORKDIR /
 
-
 ENTRYPOINT ["/usr/local/bin/install-roar.sh"]
 
