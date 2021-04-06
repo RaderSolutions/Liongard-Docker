@@ -6,7 +6,9 @@
 curl -k https://$INSTANCE.app.liongard.com/api/v1/agents/scripts/setup-roar-agent/ -o setup-roar-agent
 chmod 775 setup-roar-agent
 alias roar=/usr/local/bin/roar 
-sed -ie "s#https://nodejs.org/dist/latest/#https://nodejs.org/dist/latest-v14.x/#g" setup-roar-agent 
+sed -i -e "s#https://nodejs.org/dist/latest/#https://nodejs.org/dist/latest-v14.x/#g" setup-roar-agent 
+sed -i -e "s#USER roar #USER /usr/local/bin/roar #g" setup-roar-agent 
+
 USER=root ./setup-roar-agent --url "$INSTANCE.app.liongard.com" \
   --name "$AGENT_NAME" \
   --description "$DESCRIPTION" \
@@ -19,6 +21,7 @@ sync
 sleep 5
 
 #systemctl start pm2-root
+#journalctl -f -u pm2-root
 
-#journalctl -f -u pm2-root 
-DEBUG="*" /usr/local/lib/node_modules/pm2/bin/pm2 resurrect --no-daemon
+# Run roar pm2 in foreground
+/usr/local/lib/node_modules/pm2/bin/pm2 resurrect --no-daemon

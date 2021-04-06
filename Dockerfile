@@ -2,8 +2,8 @@ FROM centos:latest
 
 LABEL Remarks="Container for running Liongard ROAR Agents"
 
-RUN yum -y update 
-RUN yum -y install sudo npm wget net-tools bindutils whois
+RUN dnf -y update 
+RUN dnf -y install sudo npm wget net-tools bindutils whois openssh-clients 
 
 #RUN apt-get update && apt-get -y install sudo
 RUN mkdir -p /etc/liongard 
